@@ -4,7 +4,7 @@ fn main() {
 // The program’s name takes up the first value in the vector at args[0], so we’re starting at index 1.
  let args: Vec<String> = env::args().collect();
 
- let config = parse_config(&args);
+ let config = Config::new(&args);
  
 
  println!("Searching for {}", config.query);
@@ -21,9 +21,11 @@ struct Config {
     filename: String,
 }
 
-fn parse_config(args: &[String]) -> Config {
-    let query = args[1].clone();
-    let filename = args[2].clone();
-
-    Config { query, filename }
+impl Config{
+    fn new(args: &[String]) -> Config {
+        let query = args[1].clone();
+        let filename = args[2].clone();
+    
+        Config { query, filename }
+    }
 }
